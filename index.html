@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>რუსთავის ბიუჯეტური შოპინგ-გიდი | Rustavi Budget Shopping Guide</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for Serifs & Noto Serif Georgian / Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+Georgian:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        burgundy: {
+                            DEFAULT: '#580C1F',
+                            dark: '#3B0714',
+                            deep: '#28040D',
+                            light: '#7A132D',
+                            soft: '#8D1C38'
+                        },
+                        cream: {
+                            DEFAULT: '#FAF8F5',
+                            dark: '#EFEAE2',
+                            soft: '#F3EEE7'
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            soft: '#E6C875'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif Georgian', 'Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #120D0E;
+            color: #FAF8F5;
+            overflow-x: hidden;
+        }
+
+        .font-georgian-serif {
+            font-family: 'Noto Serif Georgian', 'Playfair Display', serif;
+        }
+
+        /* Curved Text Effect styling */
+        .curved-badge {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            animation: rotateText 20s linear infinite;
+        }
+
+        @keyframes rotateText {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Arch Image Frames like in photo */
+        .arch-frame {
+            border-radius: 120px 120px 16px 16px;
+            border: 1px solid rgba(250, 248, 245, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .arch-frame-sm {
+            border-radius: 80px 80px 12px 12px;
+            border: 1px solid rgba(250, 248, 245, 0.25);
+            overflow: hidden;
+        }
+
+        /* Glassmorphism & Card Styles */
+        .chic-card {
+            background: #580C1F;
+            border: 1px solid rgba(250, 248, 245, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .chic-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 12px 30px rgba(88, 12, 31, 0.4);
+        }
+
+        /* Locked Blurred Overlay Container */
+        .locked-blur {
+            filter: blur(12px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Sparkle Animations */
+        .sparkle-icon {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.8)); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #120D0E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #580C1F;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="selection:bg-burgundy-light selection:text-cream">
+
+    <!-- TOP NAVIGATION / BRAND BAR -->
+    <nav class="sticky top-0 z-50 bg-burgundy-deep/90 backdrop-blur-md border-b border-cream/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-gold text-xl font-serif font-bold tracking-widest uppercase">RUSTAVI</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-cream/10 text-cream-dark border border-cream/20 uppercase tracking-wider">SHOPPING GATE</span>
+            </div>
+            <div id="nav-status-badge" class="text-xs px-3 py-1.5 rounded-full bg-burgundy border border-gold/40 text-gold flex items-center gap-1.5">
+                <i class="fa-solid fa-lock text-[10px]"></i>
+                <span>კატალოგი ჩაკეტილია</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO & LOGIN/REGISTER GATE SECTION (REQUIRED BEFORE ACCESS) -->
+    <section id="access-section" class="relative min-h-[85vh] flex items-center justify-center px-4 py-12 overflow-hidden bg-gradient-to-b from-burgundy-deep via-burgundy-dark to-[#120D0E]">
+        
+        <i class="fa-solid fa-sparkles text-gold/30 text-3xl absolute top-12 left-10 sparkle-icon"></i>
+        <i class="fa-solid fa-star text-cream/20 text-xl absolute top-1/3 right-12 sparkle-icon" style="animation-delay: 0.7s;"></i>
+
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-6 text-center lg:text-left space-y-6">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/40 bg-burgundy/50 text-gold text-xs tracking-wider uppercase">
+                    <i class="fa-solid fa-gem"></i> რუსთავის ექსკლუზიური შოპინგ-გიდი
+                </div>
+
+                <h1 class="text-4xl md:text-5xl font-georgian-serif font-bold text-cream leading-tight">
+                    რუსთავის <span class="text-gold italic font-normal">15+ ბიუჯეტური</span> მაღაზია ერთ სივრცეში
+                </h1>
+
+                <p class="text-cream/80 text-sm md:text-base font-light leading-relaxed">
+                    შეიყვანე ელფოსტა და პაროლი, რომ გახსნა მაღაზიების სრული კატალოგი, ზუსტი მისამართები, ფასდაკლებები და რუკა.
+                </p>
+
+                <div class="p-4 rounded-2xl bg-burgundy/60 border border-cream/15 text-xs text-cream/70 space-y-2">
+                    <div class="flex items-center gap-2 text-gold font-medium">
+                        <i class="fa-solid fa-shield-halved"></i> 100% უფასო წვდომა
+                    </div>
+                    <div>რუსთავის ცენტრალური ბაზრობა • მეგა ცენტრი • შარტავას გამზირი • ძველი რუსთავი</div>
+                </div>
+            </div>
+
+            <!-- Right Lock Form (The Gate) -->
+            <div class="lg:col-span-6">
+                <div class="chic-card rounded-3xl p-8 md:p-10 shadow-2xl relative border-2 border-gold/40">
+                    
+                    <div class="text-center space-y-2 mb-6">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gold/20 text-gold text-xl">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <h2 class="text-2xl font-georgian-serif font-bold text-cream">წვდომის გააქტიურება</h2>
+                        <p class="text-xs text-cream/70">შეიყვანე მონაცემები კატალოგის გასახსნელად</p>
+                    </div>
+
+                    <form onsubmit="unlockCatalog(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-cream/80 mb-1.5">
+                                <i class="fa-regular fa-envelope text-gold mr-1"></i> ელფოსტა
+                            </label>
+                            <input type="email" id="gate-email" required placeholder="example@gmail.com"
+                                   class="w-full px-4 py-3 rounded-xl bg-burgundy-deep/90 border border-cream/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-cream/80 mb-1.5">
+                                <i class="fa-solid fa-key text-gold mr-1"></i> პაროლი
+                            </label>
+                            <input type="password" id="gate-password" required placeholder="••••••••"
+                                   class="w-full px-4 py-3 rounded-xl bg-burgundy-deep/90 border border-cream/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold text-sm">
+                        </div>
+
+                        <button type="submit" id="gate-btn" class="w-full py-3.5 px-6 rounded-xl bg-cream text-burgundy-deep font-georgian-serif font-bold text-sm hover:bg-gold transition-all duration-300 shadow-xl flex items-center justify-center gap-2">
+                            <span>კატალოგის გახსნა</span>
+                            <i class="fa-solid fa-unlock text-xs"></i>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LOCKED MAIN CONTENT AREA (BLURRED & HIDDEN UNTIL FORM SUBMISSION) -->
+    <div id="protected-content-wrapper" class="relative">
+        
+        <!-- BLUR OVERLAY MASK -->
+        <div id="blur-overlay" class="absolute inset-0 bg-burgundy-deep/80 backdrop-blur-xl z-30 flex flex-col items-center justify-center p-6 text-center">
+            <div class="p-6 rounded-3xl bg-burgundy border border-gold/40 max-w-md space-y-4 shadow-2xl">
+                <i class="fa-solid fa-lock text-4xl text-gold"></i>
+                <h3 class="text-2xl font-georgian-serif font-bold text-cream">კატალოგი დაფარულია</h3>
+                <p class="text-xs text-cream/70 leading-relaxed">
+                    მაღაზიების სრული სიის, ფასდაკლებების და მისამართების სანახავად გთხოვთ შეიყვანოთ ელფოსტა და პაროლი ზემოთ მოცემულ ფორმაში.
+                </p>
+                <a href="#access-section" class="inline-block px-6 py-2.5 bg-gold text-burgundy-deep font-bold text-xs rounded-full uppercase tracking-wider">
+                    ფორმასთან გადასვლა
+                </a>
+            </div>
+        </div>
+
+        <!-- MAIN CATALOG CONTENT -->
+        <main id="catalog-content" class="locked-blur transition-all duration-700">
+            
+            <!-- CATALOG HEADER & SEARCH BAR -->
+            <section class="py-12 px-4 max-w-7xl mx-auto border-b border-cream/10">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div>
+                        <span class="text-gold text-xs font-semibold uppercase tracking-widest"><i class="fa-solid fa-store"></i> სრული ბაზა</span>
+                        <h2 class="text-3xl md:text-4xl font-georgian-serif font-bold text-cream mt-1">
+                            რუსთავის ბიუჯეტური მაღაზიები
+                        </h2>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="w-full md:w-80 relative">
+                        <input type="text" id="store-search" oninput="searchStores()" placeholder="მოძებნე მაღაზია ან უბანი..."
+                               class="w-full pl-10 pr-4 py-2.5 rounded-full bg-burgundy border border-cream/20 text-xs text-cream placeholder-cream/40 focus:outline-none focus:border-gold">
+                        <i class="fa-solid fa-magnifying-glass text-cream/40 text-xs absolute left-4 top-3.5"></i>
+                    </div>
+                </div>
+
+                <!-- Category Tabs -->
+                <div class="flex flex-wrap gap-2 md:gap-3 mt-8">
+                    <button onclick="filterCat('all')" id="tab-all" class="cat-btn px-5 py-2 rounded-full text-xs font-medium bg-gold text-burgundy-deep">
+                        ყველა (15)
+                    </button>
+                    <button onclick="filterCat('makeup')" id="tab-makeup" class="cat-btn px-5 py-2 rounded-full text-xs font-medium bg-burgundy text-cream border border-cream/10">
+                        💄 მაკიაჟი & თავის მოვლა
+                    </button>
+                    <button onclick="filterCat('clothes')" id="tab-clothes" class="cat-btn px-5 py-2 rounded-full text-xs font-medium bg-burgundy text-cream border border-cream/10">
+                        👗 ტანსაცმელი & შოურუმები
+                    </button>
+                    <button onclick="filterCat('shoes')" id="tab-shoes" class="cat-btn px-5 py-2 rounded-full text-xs font-medium bg-burgundy text-cream border border-cream/10">
+                        👠 ფეხსაცმელი & აქსესუარები
+                    </button>
+                    <button onclick="filterCat('market')" id="tab-market" class="cat-btn px-5 py-2 rounded-full text-xs font-medium bg-burgundy text-cream border border-cream/10">
+                        🛍️ ბაზრობა & ცენტრები
+                    </button>
+                </div>
+            </section>
+
+            <!-- EXPANDED STORES GRID (15 STORES) -->
+            <section class="py-12 px-4 max-w-7xl mx-auto">
+                <div id="stores-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Store 1 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="makeup" data-name="beauty corner megacenter">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">💄 კოსმეტიკა</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> მეგა ცენტრი</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Beauty Corner Mega</h3>
+                            <p class="text-xs text-cream/70">კორეული თავის მოვლა, ბიუჯეტური ტონალურები და ტრენდული ტუშები.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - დაბალი ფასი</span>
+                            <button onclick="openLoc('Beauty Corner', 'მეგა ცენტრის 1-ლი სართული')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 2 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="clothes" data-name="chic vintage hub kostava">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">👗 Second-Hand</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> ძველი რუსთავი</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Chic Vintage Hub</h3>
+                            <p class="text-xs text-cream/70">ევროპული ბრენდების რჩეული სამოსი 10₾-დან 35₾-მდე.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - ძალიან იაფი</span>
+                            <button onclick="openLoc('Chic Vintage Hub', 'კოსტავას ქ. N12')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 3 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="shoes" data-name="trendy walk shartava">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">👠 ფეხსაცმელი</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> შარტავას გამზ.</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Trendy Walk</h3>
+                            <p class="text-xs text-cream/70">სეზონური ბოტასები და ჩანთები ბიუჯეტურ ფასებში.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾₾ - საშუალო</span>
+                            <button onclick="openLoc('Trendy Walk', 'შარტავას გამზირი N8')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 4 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="market" data-name="rustavi central market bazari">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">🛍️ ბაზრობა</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> ცენტრალური ბაზარი</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">რუსთავის ცენტრალური ბაზრობა</h3>
+                            <p class="text-xs text-cream/70">ყველაზე ბიუჯეტური ტანსაცმლისა და ფეხსაცმლის რიგები ქალაქში.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - ყველაზე იაფი</span>
+                            <button onclick="openLoc('ცენტრალური ბაზრობა', 'მესხიშვილის ქუჩის მიმდებარედ')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 5 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="makeup" data-name="glow mini perfumes shartava">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">💄 სუნამოები</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> შარტავას გამზ.</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Glow & Perfumes</h3>
+                            <p class="text-xs text-cream/70">მინი სუნამოები 10₾-დან და მაკიაჟის აქსესუარები.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - დაბალი ფასი</span>
+                            <button onclick="openLoc('Glow & Perfumes', 'შარტავას გამზირი N18')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 6 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="clothes" data-name="fashion room xxi micro">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">👗 შოურუმი</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> XXI მიკრო</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Fashion Room XXI</h3>
+                            <p class="text-xs text-cream/70">ყოველდღიური ჯინსები, ჰუდები და ორეულები შეღავათიან ფასად.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾₾ - ხელმისაწვდომი</span>
+                            <button onclick="openLoc('Fashion Room XXI', 'XXI მ/რ, კორპუსი 4')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 7 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="shoes" data-name="aesthetic accessories megacenter">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">👠 აქსესუარები</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> მეგა ცენტრი</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Aesthetic Details</h3>
+                            <p class="text-xs text-cream/70">ბიჟუტერია 5₾-დან, სათვალეები და თმის სამაგრები.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - ძალიან იაფი</span>
+                            <button onclick="openLoc('Aesthetic Details', 'მეგა ცენტრი, მე-2 სართული')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 8 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="makeup" data-name="impuls cosmetics rustavi todria">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">💄 თავის მოვლა</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> თოდრიას ქუჩა</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Impuls Cosmetics</h3>
+                            <p class="text-xs text-cream/70">ფასდაკლებები თმის მოვლასა და ტანის ლოსიონებზე.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - ბიუჯეტური</span>
+                            <button onclick="openLoc('Impuls Cosmetics', 'თოდრიას ქ. N5')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 9 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="clothes" data-name="second hand luxe megacenter">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">👗 Second-Hand</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> მეგა ცენტრის უკან</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Euro Second Hand Luxe</h3>
+                            <p class="text-xs text-cream/70">ახალივით მდგომარეობაში მყოფი ქურთუკები და სვიტერები.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - ძალიან იაფი</span>
+                            <button onclick="openLoc('Euro Second Hand', 'მეგა ცენტრის უკანა რიგი')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 10 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="market" data-name="rustavi mall boutique floor">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">🛍️ სავაჭრო ცენტრი</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> შარტავას გამზ.</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">რუსთავის მოლი (ბიუჯეტური სართული)</h3>
+                            <p class="text-xs text-cream/70">ადგილობრივი დიზაინერების და ბიუჯეტური მაღაზიების კუთხე.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾₾ - საშუალო</span>
+                            <button onclick="openLoc('რუსთავის მოლი', 'შარტავას გამზირი')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 11 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="shoes" data-name="mini bag and shoes store dzveli rustavi">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">👠 ჩანთები</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> ძველი რუსთავი</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Mini Bags & Shoes</h3>
+                            <p class="text-xs text-cream/70">ყოველდღიური და სადღესასწაულო პატარა ჩანთები 20₾-დან.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - ბიუჯეტური</span>
+                            <button onclick="openLoc('Mini Bags & Shoes', 'მაshortcut-ის გვერდით, ძველი რუსთავი')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 12 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="makeup" data-name="korean skin care rustavi mega">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">💄 კორეული მოვლა</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> VII მიკრო</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">K-Beauty Mini Shop</h3>
+                            <p class="text-xs text-cream/70">სახის ნიღბები 2.50₾-დან და კორეული მზისგან დამცავები.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - ხელმისაწვდომი</span>
+                            <button onclick="openLoc('K-Beauty Mini Shop', 'VII მ/რ, ცენტრალურ გზასთან')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 13 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="clothes" data-name="denim and hoodies outlet bazari">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">👗 რიგები</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> ბაზრობა N3</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Denim Outlet Rustavi</h3>
+                            <p class="text-xs text-cream/70">ჯინსის შარვლები 25₾-ად და სპორტული შარვლები.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - ძალიან იაფი</span>
+                            <button onclick="openLoc('Denim Outlet', 'ცენტრალური ბაზრობა, მე-3 რიგი')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 14 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="shoes" data-name="sneaker corner rustavi">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">👠 ბოტასები</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> XVI მიკრო</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">Sneaker Corner</h3>
+                            <p class="text-xs text-cream/70">ყოველდღიური მოსახერხებელი ბოტასები 35₾-დან.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - იაფი</span>
+                            <button onclick="openLoc('Sneaker Corner', 'XVI მ/რ, სავაჭრო ცენტრი')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                    <!-- Store 15 -->
+                    <div class="store-item chic-card rounded-3xl p-5 flex flex-col justify-between" data-cat="market" data-name="mega center rustavi mall all">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cream/10 text-gold">🛍️ სავაჭრო ცენტრი</span>
+                                <span class="text-cream/60"><i class="fa-solid fa-location-dot text-gold"></i> მეგა ცენტრი</span>
+                            </div>
+                            <div class="arch-frame-sm h-40 w-full"><img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=500" class="w-full h-full object-cover"></div>
+                            <h3 class="text-lg font-georgian-serif font-bold text-cream">მეგა ცენტრი (მთლიანი კომპლექსი)</h3>
+                            <p class="text-xs text-cream/70">20-ზე მეტი პატარა ბუტNodeType მაღაზია ერთ შენობაში.</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-cream/10 flex justify-between items-center text-xs">
+                            <span class="text-gold font-bold">₾ - სხვადასხვა</span>
+                            <button onclick="openLoc('მეგა ცენტრი', 'შარტავას და თოდრიას გადაკვეთა')" class="text-[11px] bg-cream/10 px-3 py-1 rounded-lg">ლოკაცია</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- LOCATION MODAL -->
+    <div id="location-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-burgundy text-cream rounded-3xl p-6 max-w-md w-full border border-gold/40 shadow-2xl relative space-y-4">
+            <button onclick="closeLoc()" class="absolute top-4 right-4 text-cream/60 hover:text-cream text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-gold text-2xl"><i class="fa-solid fa-map-location-dot"></i></div>
+            <h4 id="modal-title" class="text-xl font-georgian-serif font-bold text-cream"></h4>
+            <p id="modal-address" class="text-sm text-cream/80 bg-burgundy-deep p-3 rounded-xl border border-cream/10"></p>
+            <div class="pt-2 flex justify-end">
+                <button onclick="closeLoc()" class="px-5 py-2 bg-gold text-burgundy-deep font-bold text-xs rounded-full">
+                    დახურვა
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // UNLOCK SYSTEM LOGIC
+        function unlockCatalog(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('gate-email').value;
+            const password = document.getElementById('gate-password').value;
+
+            if (email && password) {
+                const btn = document.getElementById('gate-btn');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> იხსნება...';
+
+                setTimeout(() => {
+                    // Hide blur overlay mask
+                    const blurOverlay = document.getElementById('blur-overlay');
+                    blurOverlay.style.display = 'none';
+
+                    // Remove lock blur class from catalog content
+                    const catalog = document.getElementById('catalog-content');
+                    catalog.classList.remove('locked-blur');
+
+                    // Update Navbar badge
+                    const badge = document.getElementById('nav-status-badge');
+                    badge.className = 'text-xs px-3 py-1.5 rounded-full bg-gold text-burgundy-deep font-bold flex items-center gap-1.5';
+                    badge.innerHTML = '<i class="fa-solid fa-unlock text-[10px]"></i> <span>კატალოგი გახსნილია</span>';
+
+                    // Scroll to catalog
+                    catalog.scrollIntoView({ behavior: 'smooth' });
+                }, 800);
+            }
+        }
+
+        // FILTER CATEGORIES
+        function filterCat(cat) {
+            const items = document.querySelectorAll('.store-item');
+            const btns = document.querySelectorAll('.cat-btn');
+
+            btns.forEach(b => {
+                b.className = 'cat-btn px-5 py-2 rounded-full text-xs font-medium bg-burgundy text-cream border border-cream/10';
+            });
+
+            const active = document.getElementById(`tab-${cat}`);
+            if (active) {
+                active.className = 'cat-btn px-5 py-2 rounded-full text-xs font-medium bg-gold text-burgundy-deep';
+            }
+
+            items.forEach(item => {
+                if (cat === 'all' || item.dataset.cat === cat) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // SEARCH STORES
+        function searchStores() {
+            const query = document.getElementById('store-search').value.toLowerCase();
+            const items = document.querySelectorAll('.store-item');
+
+            items.forEach(item => {
+                const name = item.dataset.name.toLowerCase();
+                if (name.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // MODAL LOGIC
+        function openLoc(title, address) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-address').innerText = "📍 მისამართი: " + address;
+            const modal = document.getElementById('location-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLoc() {
+            const modal = document.getElementById('location-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
